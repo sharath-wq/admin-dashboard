@@ -10,10 +10,4 @@ router.get("/logout", userController.logout);
 router.post("/login", userController.login);
 router.post("/register", userController.register);
 
-router.get("/dashboard", userController.dashboard);
-router.get("/view/:id", userController.view);
-router.get("/edit/:id", userController.edit);
-
-router.put("/edit/:id", userController.editUser);
-
 module.exports = router;

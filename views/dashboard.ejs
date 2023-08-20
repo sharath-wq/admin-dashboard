@@ -38,7 +38,7 @@
                                     <td>
                                         <div class="d-flex flex-row justify-content-end gap-2">
                                             <a
-                                                href="/view/<%= element._id %>"
+                                                href="/admin/view/<%= element._id %>"
                                                 type="button"
                                                 class="btn btn-primary btn-small"
                                             >
@@ -46,7 +46,7 @@
                                             </a>
 
                                             <a
-                                                href="/edit/<%= element._id %>"
+                                                href="/admin/edit/<%= element._id %>"
                                                 type="button"
                                                 class="btn btn-success btn-small"
                                             >
@@ -54,7 +54,7 @@
                                             </a>
 
                                             <form
-                                                action="/edit/<%= element._id %>?_method=DELETE"
+                                                action="/admin/edit/<%= element._id %>?_method=DELETE"
                                                 method="post"
                                                 class="position-relative"
                                             >
@@ -75,26 +75,27 @@
 
         <% if (users.length > 0) { %>
         <nav aria-label="Dashboard Pagination">
-            <ul class="pagination justify-content-center mt-5">
+            <ul class="pagination justify-content-center">
                 <% if (current === 1) { %>
                 <li class="page-item disabled"><a href="#" class="page-link">First</a></li>
                 <% } else { %>
-                <li class="page-item"><a href="/?page=1" class="page-link">First</a></li>
+                <li class="page-item"><a href="/admin/?page=1" class="page-link">First</a></li>
                 <% } %> <% let i = (Number(current) > 5 ? Number(current) - 4 : 1); %> <% if (i !== 1) { %>
                 <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
                 <% } %> <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %> <% if (i === current) { %>
                 <li class="page-item disabled"><a href="#" class="page-link"><%= i %></a></li>
                 <% } else { %>
-                <li class="page-item"><a href="/?page=<%= i %>" class="page-link"><%= i %></a></li>
+                <li class="page-item"><a href="/admin/?page=<%= i %>" class="page-link"><%= i %></a></li>
                 <% } %> <% if (i === Number(current) + 4 && i < pages) { %>
                 <li class="page-item disabled"><a href="#" class="page-link">....</a></li>
                 <% } %> <% } %> <% if (current === pages) { %>
                 <li class="page-item disabled"><a href="#" class="page-link">Last</a></li>
                 <% } else { %>
-                <li class="page-item"><a href="/?page=<%= pages %>" class="page-link">Last</a></li>
+                <li class="page-item"><a href="/admin/?page=<%= pages %>" class="page-link">Last</a></li>
                 <% } %>
             </ul>
         </nav>
+
         <% } %> <%- include('./partials/admin/tail.ejs') %>
     </body>
 </html>

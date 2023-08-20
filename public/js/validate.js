@@ -2,10 +2,10 @@ const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");
 
 loginForm.addEventListener("submit", (e) => {
-    const emailInput = document.getElementById("emailValidation"); // Correct the ID
-    const passwordInput = document.getElementById("passwordValidation"); // Correct the ID
-    const emailError = document.getElementById("emailError"); // Define emailError
-    const passwordError = document.getElementById("passwordError"); // Define passwordError
+    const emailInput = document.getElementById("emailValidation");
+    const passwordInput = document.getElementById("passwordValidation");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
 
     let isValid = true;
 
@@ -34,11 +34,11 @@ registerForm.addEventListener("submit", (e) => {
     const emailInput = document.getElementById("registerEmail");
     const passwordInput = document.getElementById("registerPassword");
     const confirmPasswordInput = document.getElementById("registerRepeatPassword");
-    const nameError = document.getElementById("nameError"); // Define nameError
-    const usernameError = document.getElementById("usernameError"); // Define usernameError
-    const emailError = document.getElementById("emailError"); // Define emailError
-    const passwordError = document.getElementById("passwordError"); // Define passwordError
-    const confirmPasswordError = document.getElementById("registerRepeatPasswordMsg"); // Define confirmPasswordError
+    const nameError = document.getElementById("nameError");
+    const usernameError = document.getElementById("usernameError");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const confirmPasswordError = document.getElementById("registerRepeatPasswordMsg");
 
     let isValid = true;
 
@@ -108,7 +108,6 @@ function validateMatch(input1, input2, errorElement, errorMessage) {
 }
 
 function isValidGmail(email) {
-    // Check if the email is of the form "@gmail.com"
     return /^.+@gmail\.com$/.test(email);
 }
 

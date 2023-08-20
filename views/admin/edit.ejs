@@ -10,7 +10,7 @@
                     <div
                         class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
                     >
-                        <h1 class="h2">Edit <%= user.name %> <%= user.username %></h1>
+                        <h1 class="h2">Edit <%= user.name %></h1>
                         <div class="btn-toolbar mb-2 mb-md 0">
                             <div class="btn-group me-2">
                                 <button class="btn btn-sm btn-outline-dark">?</button>
@@ -26,7 +26,7 @@
                                         <li class="breadcrumb-item">
                                             <a href="/">Dashboard</a>
                                         </li>
-                                        <li class="breadcrumb-item active"><%= user.name %> <%= user.username %></li>
+                                        <li class="breadcrumb-item active"><i class="bi bi-at"><%= user.username %></i></li>
                                     </ol>
                                 </nav>
                             </div>
@@ -37,7 +37,7 @@
                         </div>
                     </div>
 
-                    <form action="/edit/<%= user._id %>?_method=PUT" method="post">
+                    <form action="/admin/edit/<%= user._id %>?_method=PUT" method="post">
                         <div class="row form-group mb-4">
                             <div class="col">
                                 <label for="name">Name</label>
@@ -76,6 +76,7 @@
                                     value="<%= user.email %>"
                                     placeholder="Email"
                                     required
+                                    disabled
                                 />
                             </div>
                         </div>
@@ -118,7 +119,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <form
-                                        action="/edit/<%= user._id%>?_method=DELETE"
+                                        action="/admin/edit/<%= user._id%>?_method=DELETE"
                                         method="post"
                                         class="position-relative"
                                     >

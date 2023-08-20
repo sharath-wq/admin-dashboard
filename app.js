@@ -25,7 +25,10 @@ app.use(
     })
 );
 
+const adminRoutes = require("./server/routes/admin");
 const userRoutes = require("./server/routes/user");
+
+app.use("/admin", adminRoutes);
 app.use("/", userRoutes);
 
 app.get("*", (req, res) => {

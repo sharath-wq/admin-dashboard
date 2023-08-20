@@ -46,7 +46,7 @@ registerForm.addEventListener("submit", (e) => {
         isValid = false;
     }
 
-    if (!validateField(userNameInput, usernameError, "Enter a valid username")) {
+    if (!validateUsername(userNameInput, usernameError, "Enter a valid username")) {
         isValid = false;
     }
 
@@ -66,6 +66,21 @@ registerForm.addEventListener("submit", (e) => {
         e.preventDefault();
     }
 });
+
+function validateUsername(input, errorElement, errorMessage) {
+    const usernameRegex = /^[a-zA-Z\-\.]+$/;
+
+    if (!input.value || input.value.length < 4) {
+        showErrorAndHide(errorElement, errorMessage);
+        return false;
+    } else if (!usernameRegex.test(input.value)) {
+        showErrorAndHide(errorElement, "Only alphabets, . and - are allowed");
+        return false;
+    } else {
+        hideError(errorElement);
+        return true;
+    }
+}
 
 function validateField(input, errorElement, errorMessage) {
     if (!input.value || input.value.length < 2) {

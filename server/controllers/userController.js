@@ -15,13 +15,64 @@ exports.home = async (req, res) => {
 
 exports.homepage = async (req, res) => {
     try {
+        const user = await User.findOne({ email: req.session.user.email });
         if (req.session.user && !req.session.user.isAdmin) {
-            res.render("home", { title: req.session.user.name });
+            res.render("home", { title: req.session.user.name, user });
         } else {
             res.redirect("/login");
         }
     } catch (error) {
         console.log(error);
+    }
+};
+
+exports.editProfile = async (req, res) => {
+    try {
+        if (!req.session.user) {
+            res.redirect("/login");
+            return;
+        }
+
+        const user = await User.findOne({ email: req.session.user.email });
+
+        if (!user) {
+            res.redirect("/login");
+            return;
+        }
+
+        if (!req.session.user.isAdmin) {
+            res.render("user/edit-profile", { title: req.session.user.name, user });
+        } else {
+            res.redirect("/admin-dashboard");
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("An error occurred while processing your request.");
+    }
+};
+exports.updateProfile = async (req, res) => {
+    try {
+        const { name, username, email, password } = req.body;
+        const updates = {
+            name: name,
+            username: username,
+            email: email,
+            updatedAt: Date.now(),
+        };
+
+        if (password) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            updates.password = hashedPassword;
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(req.session.user._id, updates, { new: true });
+
+        req.session.user = updatedUser;
+
+        res.redirect("/home");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("An error occurred while updating the profile.");
     }
 };
 

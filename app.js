@@ -35,4 +35,4 @@ app.get("*", (req, res) => {
     res.render("404", { title: "404 page not found" });
 });
 
-app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
+app.listen(PORT, () => console.log(`Server running @ http://localhost:${PORT}`));

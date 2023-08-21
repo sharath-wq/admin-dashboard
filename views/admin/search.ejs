@@ -25,8 +25,6 @@
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Username</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Updated At</th>
                                     <th scope="col" class="text-end">Actions</th>
                                 </tr>
                             </thead>
@@ -35,8 +33,7 @@
                                 <tr class="align-middle">
                                     <td><%= element.name %></td>
                                     <td><%= element.username %></td>
-                                    <td><%= element.email %></td>
-                                    <td><%= new Date(element.createdAt).toUTCString() %></td>
+
                                     <td>
                                         <div class="d-flex justify-content-end gap-2">
                                             <a href="/admin/view/<%= element._id %>" class="btn btn-primary btn-sm">

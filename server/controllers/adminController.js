@@ -22,11 +22,47 @@ exports.dashboard = async (req, res) => {
                 pages: Math.ceil(count / perPage),
             });
         } else {
-            res.redirect("/login");
+            res.redirect("/admin/login");
         }
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
+    }
+};
+
+exports.loginpage = async (req, res) => {
+    try {
+        const message = req.query.message || "";
+        if (req.session.user && req.session.user.isAdmin) {
+            res.redirect("/admin");
+        } else {
+            res.render("admin/login", { title: "Admin Login", message });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+exports.login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email: email });
+
+        if (user) {
+            const isPasswordValid = await bcrypt.compare(password, user.password);
+            if (isPasswordValid) {
+                req.session.user = user;
+                if (user && user.isAdmin) {
+                    res.redirect("/admin");
+                } else if (user && !user.isAdmin) {
+                    res.redirect("/admin/login?message=Forbidden%20only%20admin%20can%20log%20in");
+                }
+            } else {
+                res.redirect("/admin/login?message=Invalid%20credentials");
+            }
+        }
+    } catch (error) {
+        console.log(error);
     }
 };
 

@@ -33,6 +33,10 @@
                         </div>
                     </div>
 
+                    <% if (message) { %>
+                    <div class="alert alert-danger" id="registerRepeatPasswordMsg" role="alert"><%= message %></div>
+                    <% } %>
+
                     <form id="addForm" action="/admin/add" method="post">
                         <div class="row form-group mb-4">
                             <div class="col">

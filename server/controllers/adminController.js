@@ -41,8 +41,9 @@ exports.view = async (req, res) => {
 
 exports.addUser = async (req, res) => {
     try {
+        const message = req.query.message || "";
         if (req.session.user.isAdmin) {
-            res.render("admin/add", { title: "Add User" });
+            res.render("admin/add", { title: "Add User", message });
         } else {
             res.redirect("/login"); // shoud be chaned to the admin login route
         }
@@ -57,7 +58,7 @@ exports.createUser = async (req, res) => {
         const existingUser = await User.findOne({ $or: [{ email: email }, { username: username }] });
 
         if (existingUser) {
-            res.send("email or username alrady exist"); // should be changed to the admin login route
+            res.redirect("/admin/add?message=Email%20or%20username%20already%20exists"); // should be changed to the admin login route
         } else {
             const hashedPassword = await bcrypt.hash(password, 10);
 

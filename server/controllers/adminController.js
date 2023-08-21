@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const bcrypt = require("bcrypt");
 
 exports.dashboard = async (req, res) => {
     const perPage = 10;
@@ -33,6 +34,43 @@ exports.view = async (req, res) => {
     try {
         const user = await User.findOne({ _id: req.params.id });
         res.render("admin/view", { title: user.name, user });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+exports.addUser = async (req, res) => {
+    try {
+        if (req.session.user.isAdmin) {
+            res.render("admin/add", { title: "Add User" });
+        } else {
+            res.redirect("/login"); // shoud be chaned to the admin login route
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+exports.createUser = async (req, res) => {
+    try {
+        const { name, username, email, password } = req.body;
+        const existingUser = await User.findOne({ $or: [{ email: email }, { username: username }] });
+
+        if (existingUser) {
+            res.send("email or username alrady exist"); // should be changed to the admin login route
+        } else {
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            const newUser = new User({
+                name: name,
+                username: username,
+                email: email,
+                password: hashedPassword,
+            });
+            await newUser.save();
+            res.redirect("/admin");
+            res.send("an error occured during adding new user");
+        }
     } catch (error) {
         console.log(error);
     }

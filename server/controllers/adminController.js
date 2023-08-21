@@ -51,8 +51,8 @@ exports.login = async (req, res) => {
         if (user) {
             const isPasswordValid = await bcrypt.compare(password, user.password);
             if (isPasswordValid) {
-                req.session.user = user;
-                if (user && user.isAdmin) {
+                if (user.isAdmin) {
+                    req.session.user = user;
                     res.redirect("/admin");
                 } else if (user && !user.isAdmin) {
                     res.redirect("/admin/login?message=Forbidden%20only%20admin%20can%20log%20in");

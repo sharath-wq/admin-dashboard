@@ -79,21 +79,21 @@
         <nav aria-label="Dashboard Pagination">
             <ul class="pagination justify-content-center">
                 <% if (current === 1) { %>
-                <li class="page-item disabled"><a href="#" class="page-link">First</a></li>
+                <li class="page-item disabled"><a href="#" class="page-link text-gray">First</a></li>
                 <% } else { %>
-                <li class="page-item"><a href="/admin/?page=1" class="page-link">First</a></li>
+                <li class="page-item"><a href="/admin/?page=1" class="page-link text-primary">First</a></li>
                 <% } %> <% let i = (Number(current) > 5 ? Number(current) - 4 : 1); %> <% if (i !== 1) { %>
-                <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+                <li class="page-item disabled"><a href="#" class="page-link text-gray">...</a></li>
                 <% } %> <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %> <% if (i === current) { %>
                 <li class="page-item disabled"><a href="#" class="page-link"><%= i %></a></li>
                 <% } else { %>
-                <li class="page-item"><a href="/admin/?page=<%= i %>" class="page-link"><%= i %></a></li>
+                <li class="page-item"><a href="/admin/?page=<%= i %>" class="page-link text-primary"><%= i %></a></li>
                 <% } %> <% if (i === Number(current) + 4 && i < pages) { %>
                 <li class="page-item disabled"><a href="#" class="page-link">....</a></li>
                 <% } %> <% } %> <% if (current === pages) { %>
                 <li class="page-item disabled"><a href="#" class="page-link">Last</a></li>
                 <% } else { %>
-                <li class="page-item"><a href="/admin/?page=<%= pages %>" class="page-link">Last</a></li>
+                <li class="page-item"><a href="/admin/?page=<%= pages %>" class="page-link text-primary">Last</a></li>
                 <% } %>
             </ul>
         </nav>

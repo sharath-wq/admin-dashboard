@@ -1,31 +1,4 @@
-const editForm = document.getElementById("editForm");
-
-editForm.addEventListener("submit", (e) => {
-    e.preventDefault(); // Prevent form submission by default
-
-    const nameInput = document.getElementById("editName");
-    const userNameInput = document.getElementById("editUsername");
-    const emailInput = document.getElementById("editEmail");
-    const passwordInput = document.getElementById("editPassword");
-    const confirmPasswordInput = document.getElementById("editConfirmPassword");
-    const nameError = document.getElementById("nameError");
-    const usernameError = document.getElementById("usernameError");
-    const emailError = document.getElementById("emailError");
-    const passwordError = document.getElementById("passwordError");
-    const confirmPasswordError = document.getElementById("confirmpasswordError");
-
-    let isValid = true;
-
-    isValid &= validateField(nameInput, nameError, "Enter a valid name");
-    isValid &= validateUsername(userNameInput, usernameError, "Enter a valid username");
-    isValid &= validateEmail(emailInput, emailError, "Invalid email format");
-    isValid &= validatePassword(passwordInput, passwordError, "Password must be at least 8 characters");
-    isValid &= validateMatch(passwordInput, confirmPasswordInput, confirmPasswordError, "Passwords do not match");
-
-    if (isValid) {
-        editForm.submit(); // Submit the form if all validations pass
-    }
-});
+const addForm = document.getElementById("addForm");
 
 addForm.addEventListener("submit", (e) => {
     e.preventDefault(); // Prevent form submission by default

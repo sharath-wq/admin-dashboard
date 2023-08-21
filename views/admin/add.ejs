@@ -33,31 +33,33 @@
                         </div>
                     </div>
 
-                    <form action="/admin/add" method="post">
+                    <form id="addForm" action="/admin/add" method="post">
                         <div class="row form-group mb-4">
                             <div class="col">
                                 <label for="name">Name</label>
                                 <input
                                     type="text"
                                     class="form-control"
-                                    id="name"
+                                    id="addName"
                                     name="name"
                                     value=""
                                     placeholder="Name"
                                     required
                                 />
+                                <p style="display: none" class="text-danger" id="nameError" role="alert"></p>
                             </div>
                             <div class="col">
                                 <label for="username">Username</label>
                                 <input
                                     type="text"
                                     class="form-control"
-                                    id="username"
+                                    id="addUsername"
                                     name="username"
                                     value=""
                                     placeholder="Username"
                                     required
                                 />
+                                <p style="display: none" class="text-danger" id="usernameError" role="alert"></p>
                             </div>
                         </div>
 
@@ -67,24 +69,26 @@
                                 <input
                                     type="email"
                                     class="form-control"
-                                    id="email"
+                                    id="addEmail"
                                     name="email"
                                     value=""
                                     placeholder="email"
                                     required
                                 />
+                                <p style="display: none" class="text-danger" id="emailError" role="alert"></p>
                             </div>
                             <div class="col">
                                 <label for="password">Password</label>
                                 <input
                                     type="password"
                                     class="form-control"
-                                    id="password"
+                                    id="addPassword"
                                     name="password"
                                     value=""
                                     placeholder="password"
                                     required
                                 />
+                                <p style="display: none" class="text-danger" id="passwordError" role="alert"></p>
                             </div>
                         </div>
 
@@ -95,6 +99,7 @@
                 </main>
             </div>
         </div>
+        <script type="text/javascript" src="/js/addValidate.js"></script>
         <%- include('../partials/admin/tail.ejs') %>
     </body>
 </html>

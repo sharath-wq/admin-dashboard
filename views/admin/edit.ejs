@@ -33,31 +33,33 @@
                         </div>
                     </div>
 
-                    <form action="/admin/edit/<%= user._id %>?_method=PUT" method="post">
+                    <form id="adminEdit" action="/admin/edit/<%= user._id %>?_method=PUT" method="post">
                         <div class="row form-group mb-4">
                             <div class="col">
                                 <label for="name">Name</label>
                                 <input
                                     type="text"
                                     class="form-control"
-                                    id="name"
+                                    id="adminEditName"
                                     name="name"
                                     value="<%= user.name %>"
                                     placeholder="First Name"
                                     required
                                 />
+                                <p style="display: none" class="text-danger" id="nameError" role="alert"></p>
                             </div>
                             <div class="col">
                                 <label for="username">User Name</label>
                                 <input
                                     type="text"
                                     class="form-control"
-                                    id="username"
+                                    id="adminEditUsername"
                                     name="username"
                                     value="<%= user.username %>"
                                     placeholder="Last Name"
                                     required
                                 />
+                                <p style="display: none" class="text-danger" id="usernameError" role="alert"></p>
                             </div>
                         </div>
 
@@ -128,6 +130,7 @@
                 </main>
             </div>
         </div>
+        <script type="text/javascript" src="/js/adminEditValidate.js"></script>
         <%- include('../partials/admin/tail.ejs') %>
     </body>
 </html>
